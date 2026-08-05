@@ -19,6 +19,7 @@
       "type": "Microsoft.Insights/dataCollectionEndpoints",
       "apiVersion": "2023-03-11",
       "name": "[variables('dceName')]",
+      "location": "[resourceGroup().location]",
       "properties": {
         "networkAcls": {
           "publicNetworkAccess": "Enabled"
@@ -43,13 +44,14 @@
             }
           ]
         },
-        "retentionInDays": 30
+        "retentionInDays": 90
       }
     },
     {
       "type": "Microsoft.Insights/dataCollectionRules",
       "apiVersion": "2023-03-11",
       "name": "[variables('dcrName')]",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
         "[resourceId('Microsoft.OperationalInsights/workspaces/tables', parameters('workspaceName'), variables('tableName'))]"
@@ -80,14 +82,14 @@
         },
         "dataFlows": [
           {
-              "streams": [
-                "Custom-Test1_CL"
-              ],
-              "destinations": [
-                "lawDestination"
-              ],
-              "transformKql": "source",
-              "outputStream": "Custom-Test1_CL"
+            "streams": [
+              "Custom-Test1_CL"
+            ],
+            "destinations": [
+              "lawDestination"
+            ],
+            "transformKql": "source",
+            "outputStream": "Custom-Test1_CL"
           }
         ]
       }
