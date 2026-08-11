@@ -200,7 +200,7 @@
             },
             {
               "name": "Compliant",
-              "type": "bool"
+              "type": "boolean"
             }
           ]
         },
@@ -596,7 +596,7 @@
               },
               {
                 "name": "Compliant",
-                "type": "bool"
+                "type": "boolean"
               }
             ]
           }
