@@ -1,1 +1,730 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "type": "string",
+      "metadata": {
+        "description": "Existing Log Analytics workspace name"
+      }
+    }
+  },
+  "variables": {
+    "dceName": "SecureScoreDCE"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Insights/dataCollectionEndpoints",
+      "apiVersion": "2023-03-11",
+      "name": "[variables('dceName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "networkAcls": {
+          "publicNetworkAccess": "Enabled"
+        }
+      }
+    },
 
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/tables",
+      "apiVersion": "2023-09-01",
+      "name": "[format('{0}/m365securecontrolsSWX_CL', parameters('workspaceName'))]",
+      "properties": {
+        "schema": {
+          "name": "m365securecontrolsSWX_CL",
+          "columns": [
+            {
+              "name": "TimeGenerated",
+              "type": "datetime"
+            },
+            {
+              "name": "Message",
+              "type": "string"
+            },
+            {
+              "name": "Source",
+              "type": "string"
+            }
+          ]
+        },
+        "retentionInDays": 90
+      }
+    },
+
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/tables",
+      "apiVersion": "2023-09-01",
+      "name": "[format('{0}/m365securescoreSWX_CL', parameters('workspaceName'))]",
+      "properties": {
+        "schema": {
+          "name": "m365securescoreSWX_CL",
+          "columns": [
+            {
+              "name": "TimeGenerated",
+              "type": "datetime"
+            },
+            {
+              "name": "Username",
+              "type": "string"
+            },
+            {
+              "name": "IPAddress",
+              "type": "string"
+            }
+          ]
+        },
+        "retentionInDays": 90
+      }
+    },
+
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/tables",
+      "apiVersion": "2023-09-01",
+      "name": "[format('{0}/mdfeadvancedhuntingkbSWX_CL', parameters('workspaceName'))]",
+      "properties": {
+        "schema": {
+          "name": "mdfeadvancedhuntingkbSWX_CL",
+          "columns": [
+            {
+              "name": "TimeGenerated",
+              "type": "datetime"
+            },
+            {
+              "name": "DeviceName",
+              "type": "string"
+            },
+            {
+              "name": "Action",
+              "type": "string"
+            }
+          ]
+        },
+        "retentionInDays": 90
+      }
+    },
+
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/tables",
+      "apiVersion": "2023-09-01",
+      "name": "[format('{0}/mdfeadvancedhuntingSWX_CL', parameters('workspaceName'))]",
+      "properties": {
+        "schema": {
+          "name": "mdfeadvancedhuntingSWX_CL",
+          "columns": [
+            {
+              "name": "TimeGenerated",
+              "type": "datetime"
+            },
+            {
+              "name": "EventType",
+              "type": "string"
+            },
+            {
+              "name": "Severity",
+              "type": "int"
+            }
+          ]
+        },
+        "retentionInDays": 90
+      }
+    },
+
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/tables",
+      "apiVersion": "2023-09-01",
+      "name": "[format('{0}/mdfedevicevulnerabilitySWX_CL', parameters('workspaceName'))]",
+      "properties": {
+        "schema": {
+          "name": "mdfedevicevulnerabilitySWX_CL",
+          "columns": [
+            {
+              "name": "TimeGenerated",
+              "type": "datetime"
+            },
+            {
+              "name": "Hostname",
+              "type": "string"
+            },
+            {
+              "name": "Port",
+              "type": "int"
+            }
+          ]
+        },
+        "retentionInDays": 90
+      }
+    },
+
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/tables",
+      "apiVersion": "2023-09-01",
+      "name": "[format('{0}/mdfeexposurescoreSWX_CL', parameters('workspaceName'))]",
+      "properties": {
+        "schema": {
+          "name": "mdfeexposurescoreSWX_CL",
+          "columns": [
+            {
+              "name": "TimeGenerated",
+              "type": "datetime"
+            },
+            {
+              "name": "Query",
+              "type": "string"
+            },
+            {
+              "name": "Result",
+              "type": "string"
+            }
+          ]
+        },
+        "retentionInDays": 90
+      }
+    },
+
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/tables",
+      "apiVersion": "2023-09-01",
+      "name": "[format('{0}/mdferecommendatonsSWX_CL', parameters('workspaceName'))]",
+      "properties": {
+        "schema": {
+          "name": "mdferecommendatonsSWX_CL",
+          "columns": [
+            {
+              "name": "TimeGenerated",
+              "type": "datetime"
+            },
+            {
+              "name": "PolicyName",
+              "type": "string"
+            },
+            {
+              "name": "Compliant",
+              "type": "boolean"
+            }
+          ]
+        },
+        "retentionInDays": 90
+      }
+    },
+
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/tables",
+      "apiVersion": "2023-09-01",
+      "name": "[format('{0}/mdfesecurescoreSWX_CL', parameters('workspaceName'))]",
+      "properties": {
+        "schema": {
+          "name": "mdfesecurescoreSWX_CL",
+          "columns": [
+            {
+              "name": "TimeGenerated",
+              "type": "datetime"
+            },
+            {
+              "name": "Application",
+              "type": "string"
+            },
+            {
+              "name": "Version",
+              "type": "string"
+            }
+          ]
+        },
+        "retentionInDays": 90
+      }
+    },
+
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/tables",
+      "apiVersion": "2023-09-01",
+      "name": "[format('{0}/mdfezerodayexploitsSWX_CL', parameters('workspaceName'))]",
+      "properties": {
+        "schema": {
+          "name": "mdfezerodayexploitsSWX_CL",
+          "columns": [
+            {
+              "name": "TimeGenerated",
+              "type": "datetime"
+            },
+            {
+              "name": "Category",
+              "type": "string"
+            },
+            {
+              "name": "Value",
+              "type": "real"
+            }
+          ]
+        },
+        "retentionInDays": 90
+      }
+    },
+
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2023-03-11",
+      "name": "m365securecontrolsDCR",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "[resourceId('Microsoft.OperationalInsights/workspaces/tables', parameters('workspaceName'), 'm365securecontrolsSWX_CL')]"
+      ],
+      "properties": {
+        "dataCollectionEndpointId": "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "streamDeclarations": {
+          "Custom-m365securecontrolsSWX_CL": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "Message",
+                "type": "string"
+              },
+              {
+                "name": "Source",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "logAnalytics": [
+            {
+              "name": "lawDestination",
+              "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-m365securecontrolsSWX_CL"
+            ],
+            "destinations": [
+              "lawDestination"
+            ],
+            "transformKql": "source",
+            "outputStream": "Custom-m365securecontrolsSWX_CL"
+          }
+        ]
+      }
+    },
+
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2023-03-11",
+      "name": "m365securescoreDCR",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "[resourceId('Microsoft.OperationalInsights/workspaces/tables', parameters('workspaceName'), 'm365securescoreSWX_CL')]"
+      ],
+      "properties": {
+        "dataCollectionEndpointId": "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "streamDeclarations": {
+          "Custom-m365securescoreSWX_CL": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "Username",
+                "type": "string"
+              },
+              {
+                "name": "IPAddress",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "logAnalytics": [
+            {
+              "name": "lawDestination",
+              "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-m365securescoreSWX_CL"
+            ],
+            "destinations": [
+              "lawDestination"
+            ],
+            "transformKql": "source",
+            "outputStream": "Custom-m365securescoreSWX_CL"
+          }
+        ]
+      }
+    },
+
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2023-03-11",
+      "name": "mdfeadvancedhuntingkbDCR",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "[resourceId('Microsoft.OperationalInsights/workspaces/tables', parameters('workspaceName'), 'mdfeadvancedhuntingkbSWX_CL')]"
+      ],
+      "properties": {
+        "dataCollectionEndpointId": "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "streamDeclarations": {
+          "Custom-mdfeadvancedhuntingkbSWX_CL": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "DeviceName",
+                "type": "string"
+              },
+              {
+                "name": "Action",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "logAnalytics": [
+            {
+              "name": "lawDestination",
+              "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-mdfeadvancedhuntingkbSWX_CL"
+            ],
+            "destinations": [
+              "lawDestination"
+            ],
+            "transformKql": "source",
+            "outputStream": "Custom-mdfeadvancedhuntingkbSWX_CL"
+          }
+        ]
+      }
+    },
+
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2023-03-11",
+      "name": "mdfeadvancedhuntingDCR",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "[resourceId('Microsoft.OperationalInsights/workspaces/tables', parameters('workspaceName'), 'mdfeadvancedhuntingSWX_CL')]"
+      ],
+      "properties": {
+        "dataCollectionEndpointId": "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "streamDeclarations": {
+          "Custom-mdfeadvancedhuntingSWX_CL": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "EventType",
+                "type": "string"
+              },
+              {
+                "name": "Severity",
+                "type": "int"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "logAnalytics": [
+            {
+              "name": "lawDestination",
+              "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-mdfeadvancedhuntingSWX_CL"
+            ],
+            "destinations": [
+              "lawDestination"
+            ],
+            "transformKql": "source",
+            "outputStream": "Custom-mdfeadvancedhuntingSWX_CL"
+          }
+        ]
+      }
+    },
+
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2023-03-11",
+      "name": "mdfedevicevulnerabilityDCR",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "[resourceId('Microsoft.OperationalInsights/workspaces/tables', parameters('workspaceName'), 'mdfedevicevulnerabilitySWX_CL')]"
+      ],
+      "properties": {
+        "dataCollectionEndpointId": "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "streamDeclarations": {
+          "Custom-mdfedevicevulnerabilitySWX_CL": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "Hostname",
+                "type": "string"
+              },
+              {
+                "name": "Port",
+                "type": "int"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "logAnalytics": [
+            {
+              "name": "lawDestination",
+              "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-mdfedevicevulnerabilitySWX_CL"
+            ],
+            "destinations": [
+              "lawDestination"
+            ],
+            "transformKql": "source",
+            "outputStream": "Custom-mdfedevicevulnerabilitySWX_CL"
+          }
+        ]
+      }
+    },
+
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2023-03-11",
+      "name": "mdfeexposurescoreDCR",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "[resourceId('Microsoft.OperationalInsights/workspaces/tables', parameters('workspaceName'), 'mdfeexposurescoreSWX_CL')]"
+      ],
+      "properties": {
+        "dataCollectionEndpointId": "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "streamDeclarations": {
+          "Custom-mdfeexposurescoreSWX_CL": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "Query",
+                "type": "string"
+              },
+              {
+                "name": "Result",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "logAnalytics": [
+            {
+              "name": "lawDestination",
+              "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-mdfeexposurescoreSWX_CL"
+            ],
+            "destinations": [
+              "lawDestination"
+            ],
+            "transformKql": "source",
+            "outputStream": "Custom-mdfeexposurescoreSWX_CL"
+          }
+        ]
+      }
+    },
+
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2023-03-11",
+      "name": "mdferecommendatonsDCR",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "[resourceId('Microsoft.OperationalInsights/workspaces/tables', parameters('workspaceName'), 'mdferecommendatonsSWX_CL')]"
+      ],
+      "properties": {
+        "dataCollectionEndpointId": "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "streamDeclarations": {
+          "Custom-mdferecommendatonsSWX_CL": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "PolicyName",
+                "type": "string"
+              },
+              {
+                "name": "Compliant",
+                "type": "boolean"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "logAnalytics": [
+            {
+              "name": "lawDestination",
+              "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-mdferecommendatonsSWX_CL"
+            ],
+            "destinations": [
+              "lawDestination"
+            ],
+            "transformKql": "source",
+            "outputStream": "Custom-mdferecommendatonsSWX_CL"
+          }
+        ]
+      }
+    },
+
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2023-03-11",
+      "name": "mdfesecurescoreDCR",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "[resourceId('Microsoft.OperationalInsights/workspaces/tables', parameters('workspaceName'), 'mdfesecurescoreSWX_CL')]"
+      ],
+      "properties": {
+        "dataCollectionEndpointId": "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "streamDeclarations": {
+          "Custom-mdfesecurescoreSWX_CL": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "Application",
+                "type": "string"
+              },
+              {
+                "name": "Version",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "logAnalytics": [
+            {
+              "name": "lawDestination",
+              "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-mdfesecurescoreSWX_CL"
+            ],
+            "destinations": [
+              "lawDestination"
+            ],
+            "transformKql": "source",
+            "outputStream": "Custom-mdfesecurescoreSWX_CL"
+          }
+        ]
+      }
+    },
+
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2023-03-11",
+      "name": "mdfezerodayexploitsDCR",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "[resourceId('Microsoft.OperationalInsights/workspaces/tables', parameters('workspaceName'), 'mdfezerodayexploitsSWX_CL')]"
+      ],
+      "properties": {
+        "dataCollectionEndpointId": "[resourceId('Microsoft.Insights/dataCollectionEndpoints', variables('dceName'))]",
+        "streamDeclarations": {
+          "Custom-mdfezerodayexploitsSWX_CL": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "Category",
+                "type": "string"
+              },
+              {
+                "name": "Value",
+                "type": "real"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "logAnalytics": [
+            {
+              "name": "lawDestination",
+              "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-mdfezerodayexploitsSWX_CL"
+            ],
+            "destinations": [
+              "lawDestination"
+            ],
+            "transformKql": "source",
+            "outputStream": "Custom-mdfezerodayexploitsSWX_CL"
+          }
+        ]
+      }
+    }
+  ]
+}
