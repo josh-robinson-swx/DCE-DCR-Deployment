@@ -24,7 +24,6 @@
         }
       }
     },
-
     {
       "type": "Microsoft.OperationalInsights/workspaces/tables",
       "apiVersion": "2023-09-01",
@@ -38,11 +37,43 @@
               "type": "datetime"
             },
             {
-              "name": "Message",
+              "name": "id",
               "type": "string"
             },
             {
-              "name": "Source",
+              "name": "SourceSystem",
+              "type": "string"
+            },
+            {
+              "name": "currentScore",
+              "type": "real"
+            },
+            {
+              "name": "maxScore",
+              "type": "int"
+            },
+            {
+              "name": "enabledServices",
+              "type": "string"
+            },
+            {
+              "name": "licensedUserCount",
+              "type": "int"
+            },
+            {
+              "name": "vendorInformation_provider",
+              "type": "string"
+            },
+            {
+              "name": "vendorInformation_vendor",
+              "type": "string"
+            },
+            {
+              "name": "averageComparativeScores",
+              "type": "string"
+            },
+            {
+              "name": "controlScores",
               "type": "string"
             }
           ]
@@ -50,7 +81,6 @@
         "retentionInDays": 90
       }
     },
-
     {
       "type": "Microsoft.OperationalInsights/workspaces/tables",
       "apiVersion": "2023-09-01",
@@ -64,19 +94,22 @@
               "type": "datetime"
             },
             {
-              "name": "Username",
-              "type": "string"
+              "name": "currentScore",
+              "type": "int"
             },
             {
-              "name": "IPAddress",
-              "type": "string"
+              "name": "maxScore",
+              "type": "int"
+            },
+            {
+              "name": "activeUserCount",
+              "type": "int"
             }
           ]
         },
         "retentionInDays": 90
       }
     },
-
     {
       "type": "Microsoft.OperationalInsights/workspaces/tables",
       "apiVersion": "2023-09-01",
@@ -90,11 +123,15 @@
               "type": "datetime"
             },
             {
-              "name": "DeviceName",
+              "name": "CveId",
               "type": "string"
             },
             {
-              "name": "Action",
+              "name": "CvssScore",
+              "type": "int"
+            },
+            {
+              "name": "VulnerabilityDescription",
               "type": "string"
             }
           ]
@@ -102,7 +139,6 @@
         "retentionInDays": 90
       }
     },
-
     {
       "type": "Microsoft.OperationalInsights/workspaces/tables",
       "apiVersion": "2023-09-01",
@@ -116,19 +152,50 @@
               "type": "datetime"
             },
             {
-              "name": "EventType",
+              "name": "DeviceId",
               "type": "string"
             },
             {
-              "name": "Severity",
-              "type": "int"
+              "name": "DeviceName",
+              "type": "string"
+            },
+            {
+              "name": "OSVersion",
+              "type": "string"
+            },
+            {
+              "name": "OSPlatform",
+              "type": "string"
+            },
+            {
+              "name": "SoftwareVendor",
+              "type": "string"
+            },
+            {
+              "name": "SoftwareName",
+              "type": "string"
+            },
+            {
+              "name": "SoftwareVersion",
+              "type": "string"
+            },
+            {
+              "name": "CveId",
+              "type": "string"
+            },
+            {
+              "name": "VulnerabilitySeverityLevel",
+              "type": "string"
+            },
+            {
+              "name": "RecommendedSecurityUpdate",
+              "type": "string"
             }
           ]
         },
         "retentionInDays": 90
       }
     },
-
     {
       "type": "Microsoft.OperationalInsights/workspaces/tables",
       "apiVersion": "2023-09-01",
@@ -142,19 +209,66 @@
               "type": "datetime"
             },
             {
-              "name": "Hostname",
+              "name": "id",
               "type": "string"
             },
             {
-              "name": "Port",
-              "type": "int"
+              "name": "deviceId",
+              "type": "string"
+            },
+            {
+              "name": "deviceName",
+              "type": "string"
+            },
+            {
+              "name": "osPlatform",
+              "type": "string"
+            },
+            {
+              "name": "osVersion",
+              "type": "string"
+            },
+            {
+              "name": "softwareVendor",
+              "type": "string"
+            },
+            {
+              "name": "softwareName",
+              "type": "string"
+            },
+            {
+              "name": "softwareVersion",
+              "type": "string"
+            },
+            {
+              "name": "cveId",
+              "type": "string"
+            },
+            {
+              "name": "vulnerabilitySeverityLevel",
+              "type": "string"
+            },
+            {
+              "name": "lastSeenTimestamp",
+              "type": "datetime"
+            },
+            {
+              "name": "firstSeenTimestamp",
+              "type": "datetime"
+            },
+            {
+              "name": "exploitabilityLevel",
+              "type": "string"
+            },
+            {
+              "name": "securityUpdateAvailable",
+              "type": "string"
             }
           ]
         },
         "retentionInDays": 90
       }
     },
-
     {
       "type": "Microsoft.OperationalInsights/workspaces/tables",
       "apiVersion": "2023-09-01",
@@ -168,11 +282,15 @@
               "type": "datetime"
             },
             {
-              "name": "Query",
+              "name": "score",
+              "type": "int"
+            },
+            {
+              "name": "SourceSystem",
               "type": "string"
             },
             {
-              "name": "Result",
+              "name": "odata_contex",
               "type": "string"
             }
           ]
@@ -180,7 +298,6 @@
         "retentionInDays": 90
       }
     },
-
     {
       "type": "Microsoft.OperationalInsights/workspaces/tables",
       "apiVersion": "2023-09-01",
@@ -194,19 +311,98 @@
               "type": "datetime"
             },
             {
-              "name": "PolicyName",
+              "name": "id",
               "type": "string"
             },
             {
-              "name": "Compliant",
+              "name": "productName",
+              "type": "string"
+            },
+            {
+              "name": "recommendationName",
+              "type": "string"
+            },
+            {
+              "name": "weaknesses",
+              "type": "string"
+            },
+            {
+              "name": "vendor",
+              "type": "string"
+            },
+            {
+              "name": "recommendationCategory",
+              "type": "string"
+            },
+            {
+              "name": "subCategory",
+              "type": "string"
+            },
+            {
+              "name": "severityScore",
+              "type": "int"
+            },
+            {
+              "name": "publicExploit",
               "type": "boolean"
+            },
+            {
+              "name": "activeAlert",
+              "type": "string"
+            },
+            {
+              "name": "associatedThreats",
+              "type": "string"
+            },
+            {
+              "name": "remediationType",
+              "type": "string"
+            },
+            {
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "name": "configScoreImpact",
+              "type": "int"
+            },
+            {
+              "name": "exposureImpact",
+              "type": "real"
+            },
+            {
+              "name": "totalMachineCount",
+              "type": "int"
+            },
+            {
+              "name": "exposedMachinesCount",
+              "type": "int"
+            },
+            {
+              "name": "nonProductivityImpactedAssets",
+              "type": "int"
+            },
+            {
+              "name": "relatedComponent",
+              "type": "string"
+            },
+            {
+              "name": "hasUnpatchableCve",
+              "type": "string"
+            },
+            {
+              "name": "tags",
+              "type": "string"
+            },
+            {
+              "name": "exposedCriticalDevices",
+              "type": "int"
             }
           ]
         },
         "retentionInDays": 90
       }
     },
-
     {
       "type": "Microsoft.OperationalInsights/workspaces/tables",
       "apiVersion": "2023-09-01",
@@ -220,19 +416,22 @@
               "type": "datetime"
             },
             {
-              "name": "Application",
+              "name": "SourceSystem",
               "type": "string"
             },
             {
-              "name": "Version",
+              "name": "odata_context",
               "type": "string"
+            },
+            {
+              "name": "score",
+              "type": "int"
             }
           ]
         },
         "retentionInDays": 90
       }
     },
-
     {
       "type": "Microsoft.OperationalInsights/workspaces/tables",
       "apiVersion": "2023-09-01",
@@ -246,19 +445,54 @@
               "type": "datetime"
             },
             {
-              "name": "Category",
+              "name": "id",
               "type": "string"
             },
             {
-              "name": "Value",
-              "type": "real"
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "name": "severity",
+              "type": "string"
+            },
+            {
+              "name": "cvssV3",
+              "type": "string"
+            },
+            {
+              "name": "cvssVector",
+              "type": "string"
+            },
+            {
+              "name": "publishedOn",
+              "type": "string"
+            },
+            {
+              "name": "updatedOn",
+              "type": "string"
+            },
+            {
+              "name": "publicExploit",
+              "type": "string"
+            },
+            {
+              "name": "exploitTypes",
+              "type": "string"
+            },
+            {
+              "name": "tags",
+              "type": "datetime"
             }
           ]
         },
         "retentionInDays": 90
       }
     },
-
     {
       "type": "Microsoft.Insights/dataCollectionRules",
       "apiVersion": "2023-03-11",
@@ -278,11 +512,43 @@
                 "type": "datetime"
               },
               {
-                "name": "Message",
+                "name": "id",
                 "type": "string"
               },
               {
-                "name": "Source",
+                "name": "SourceSystem",
+                "type": "string"
+              },
+              {
+                "name": "currentScore",
+                "type": "real"
+              },
+              {
+                "name": "maxScore",
+                "type": "int"
+              },
+              {
+                "name": "enabledServices",
+                "type": "string"
+              },
+              {
+                "name": "licensedUserCount",
+                "type": "int"
+              },
+              {
+                "name": "vendorInformation_provider",
+                "type": "string"
+              },
+              {
+                "name": "vendorInformation_vendor",
+                "type": "string"
+              },
+              {
+                "name": "averageComparativeScores",
+                "type": "string"
+              },
+              {
+                "name": "controlScores",
                 "type": "string"
               }
             ]
@@ -310,7 +576,6 @@
         ]
       }
     },
-
     {
       "type": "Microsoft.Insights/dataCollectionRules",
       "apiVersion": "2023-03-11",
@@ -330,12 +595,16 @@
                 "type": "datetime"
               },
               {
-                "name": "Username",
-                "type": "string"
+                "name": "currentScore",
+                "type": "int"
               },
               {
-                "name": "IPAddress",
-                "type": "string"
+                "name": "maxScore",
+                "type": "int"
+              },
+              {
+                "name": "activeUserCount",
+                "type": "int"
               }
             ]
           }
@@ -362,7 +631,6 @@
         ]
       }
     },
-
     {
       "type": "Microsoft.Insights/dataCollectionRules",
       "apiVersion": "2023-03-11",
@@ -382,11 +650,15 @@
                 "type": "datetime"
               },
               {
-                "name": "DeviceName",
+                "name": "CveId",
                 "type": "string"
               },
               {
-                "name": "Action",
+                "name": "CvssScore",
+                "type": "int"
+              },
+              {
+                "name": "VulnerabilityDescription",
                 "type": "string"
               }
             ]
@@ -414,7 +686,6 @@
         ]
       }
     },
-
     {
       "type": "Microsoft.Insights/dataCollectionRules",
       "apiVersion": "2023-03-11",
@@ -434,12 +705,44 @@
                 "type": "datetime"
               },
               {
-                "name": "EventType",
+                "name": "DeviceId",
                 "type": "string"
               },
               {
-                "name": "Severity",
-                "type": "int"
+                "name": "DeviceName",
+                "type": "string"
+              },
+              {
+                "name": "OSVersion",
+                "type": "string"
+              },
+              {
+                "name": "OSPlatform",
+                "type": "string"
+              },
+              {
+                "name": "SoftwareVendor",
+                "type": "string"
+              },
+              {
+                "name": "SoftwareName",
+                "type": "string"
+              },
+              {
+                "name": "SoftwareVersion",
+                "type": "string"
+              },
+              {
+                "name": "CveId",
+                "type": "string"
+              },
+              {
+                "name": "VulnerabilitySeverityLevel",
+                "type": "string"
+              },
+              {
+                "name": "RecommendedSecurityUpdate",
+                "type": "string"
               }
             ]
           }
@@ -466,7 +769,6 @@
         ]
       }
     },
-
     {
       "type": "Microsoft.Insights/dataCollectionRules",
       "apiVersion": "2023-03-11",
@@ -486,12 +788,60 @@
                 "type": "datetime"
               },
               {
-                "name": "Hostname",
+                "name": "id",
                 "type": "string"
               },
               {
-                "name": "Port",
-                "type": "int"
+                "name": "deviceId",
+                "type": "string"
+              },
+              {
+                "name": "deviceName",
+                "type": "string"
+              },
+              {
+                "name": "osPlatform",
+                "type": "string"
+              },
+              {
+                "name": "osVersion",
+                "type": "string"
+              },
+              {
+                "name": "softwareVendor",
+                "type": "string"
+              },
+              {
+                "name": "softwareName",
+                "type": "string"
+              },
+              {
+                "name": "softwareVersion",
+                "type": "string"
+              },
+              {
+                "name": "cveId",
+                "type": "string"
+              },
+              {
+                "name": "vulnerabilitySeverityLevel",
+                "type": "string"
+              },
+              {
+                "name": "lastSeenTimestamp",
+                "type": "datetime"
+              },
+              {
+                "name": "firstSeenTimestamp",
+                "type": "datetime"
+              },
+              {
+                "name": "exploitabilityLevel",
+                "type": "string"
+              },
+              {
+                "name": "securityUpdateAvailable",
+                "type": "string"
               }
             ]
           }
@@ -518,7 +868,6 @@
         ]
       }
     },
-
     {
       "type": "Microsoft.Insights/dataCollectionRules",
       "apiVersion": "2023-03-11",
@@ -538,11 +887,15 @@
                 "type": "datetime"
               },
               {
-                "name": "Query",
+                "name": "score",
+                "type": "int"
+              },
+              {
+                "name": "SourceSystem",
                 "type": "string"
               },
               {
-                "name": "Result",
+                "name": "odata_contex",
                 "type": "string"
               }
             ]
@@ -570,7 +923,6 @@
         ]
       }
     },
-
     {
       "type": "Microsoft.Insights/dataCollectionRules",
       "apiVersion": "2023-03-11",
@@ -590,12 +942,92 @@
                 "type": "datetime"
               },
               {
-                "name": "PolicyName",
+                "name": "id",
                 "type": "string"
               },
               {
-                "name": "Compliant",
+                "name": "productName",
+                "type": "string"
+              },
+              {
+                "name": "recommendationName",
+                "type": "string"
+              },
+              {
+                "name": "weaknesses",
+                "type": "string"
+              },
+              {
+                "name": "vendor",
+                "type": "string"
+              },
+              {
+                "name": "recommendationCategory",
+                "type": "string"
+              },
+              {
+                "name": "subCategory",
+                "type": "string"
+              },
+              {
+                "name": "severityScore",
+                "type": "int"
+              },
+              {
+                "name": "publicExploit",
                 "type": "boolean"
+              },
+              {
+                "name": "activeAlert",
+                "type": "string"
+              },
+              {
+                "name": "associatedThreats",
+                "type": "string"
+              },
+              {
+                "name": "remediationType",
+                "type": "string"
+              },
+              {
+                "name": "status",
+                "type": "string"
+              },
+              {
+                "name": "configScoreImpact",
+                "type": "int"
+              },
+              {
+                "name": "exposureImpact",
+                "type": "real"
+              },
+              {
+                "name": "totalMachineCount",
+                "type": "int"
+              },
+              {
+                "name": "exposedMachinesCount",
+                "type": "int"
+              },
+              {
+                "name": "nonProductivityImpactedAssets",
+                "type": "int"
+              },
+              {
+                "name": "relatedComponent",
+                "type": "string"
+              },
+              {
+                "name": "hasUnpatchableCve",
+                "type": "string"
+              },
+              {
+                "name": "tags",
+                "type": "string"
+              },
+              {
+                "name": "exposedCriticalDevices",
+                "type": "int"
               }
             ]
           }
@@ -622,7 +1054,6 @@
         ]
       }
     },
-
     {
       "type": "Microsoft.Insights/dataCollectionRules",
       "apiVersion": "2023-03-11",
@@ -642,12 +1073,16 @@
                 "type": "datetime"
               },
               {
-                "name": "Application",
+                "name": "SourceSystem",
                 "type": "string"
               },
               {
-                "name": "Version",
+                "name": "odata_context",
                 "type": "string"
+              },
+              {
+                "name": "score",
+                "type": "int"
               }
             ]
           }
@@ -674,7 +1109,6 @@
         ]
       }
     },
-
     {
       "type": "Microsoft.Insights/dataCollectionRules",
       "apiVersion": "2023-03-11",
@@ -694,12 +1128,48 @@
                 "type": "datetime"
               },
               {
-                "name": "Category",
+                "name": "id",
                 "type": "string"
               },
               {
-                "name": "Value",
-                "type": "real"
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "name": "severity",
+                "type": "string"
+              },
+              {
+                "name": "cvssV3",
+                "type": "string"
+              },
+              {
+                "name": "cvssVector",
+                "type": "string"
+              },
+              {
+                "name": "publishedOn",
+                "type": "string"
+              },
+              {
+                "name": "updatedOn",
+                "type": "string"
+              },
+              {
+                "name": "publicExploit",
+                "type": "string"
+              },
+              {
+                "name": "exploitTypes",
+                "type": "string"
+              },
+              {
+                "name": "tags",
+                "type": "datetime"
               }
             ]
           }
