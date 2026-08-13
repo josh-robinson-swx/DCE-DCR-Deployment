@@ -78,7 +78,7 @@
             }
           ]
         },
-        "retentionInDays": 90
+        "retentionInDays": 365
       }
     },
     {
@@ -107,7 +107,7 @@
             }
           ]
         },
-        "retentionInDays": 90
+        "retentionInDays": 365
       }
     },
     {
@@ -136,7 +136,7 @@
             }
           ]
         },
-        "retentionInDays": 90
+        "retentionInDays": 365
       }
     },
     {
@@ -193,7 +193,7 @@
             }
           ]
         },
-        "retentionInDays": 90
+        "retentionInDays": 365
       }
     },
     {
@@ -266,7 +266,7 @@
             }
           ]
         },
-        "retentionInDays": 90
+        "retentionInDays": 365
       }
     },
     {
@@ -295,7 +295,7 @@
             }
           ]
         },
-        "retentionInDays": 90
+        "retentionInDays": 365
       }
     },
     {
@@ -400,7 +400,7 @@
             }
           ]
         },
-        "retentionInDays": 90
+        "retentionInDays": 365
       }
     },
     {
@@ -429,7 +429,7 @@
             }
           ]
         },
-        "retentionInDays": 90
+        "retentionInDays": 365
       }
     },
     {
@@ -490,7 +490,7 @@
             }
           ]
         },
-        "retentionInDays": 90
+        "retentionInDays": 365
       }
     },
     {
