@@ -44,7 +44,7 @@
             }
           ]
         },
-        "retentionInDays": 90
+        "retentionInDays": 365
       }
     },
     {
